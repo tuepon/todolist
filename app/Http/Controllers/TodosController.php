@@ -39,18 +39,18 @@ class TodosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-					'text' => 'required'
-				]);
+                'text' => 'required'
+            ]);
 
-				// Create Todo
-				$todo = new Todo;
-				$todo->text = $request->input('text');
-				$todo->body = $request->input('body');
-				$todo->due = $request->input('due');
+            // Create Todo
+            $todo = new Todo;
+            $todo->text = $request->input('text');
+            $todo->body = $request->input('body');
+            $todo->due = $request->input('due');
 
-				$todo->save();
+            $todo->save();
 
-				return redirect('/')->with('success', 'Todo Created');
+            return redirect('/')->with('success', 'Todo Created');
     }
 
     /**
@@ -74,7 +74,7 @@ class TodosController extends Controller
     public function edit($id)
     {
         $todo = Todo::find($id);
-				return view('todos.show')->with('todo', $todo);
+			return view('todos.edit')->with('todo', $todo);
     }
 
     /**
@@ -87,13 +87,13 @@ class TodosController extends Controller
     public function update(Request $request, $id)
     {
         $todo = Todo::find($id);
-				$todo->text = $request->input('text');
-				$todo->body = $request->input('body');
-				$todo->due = $request->input('due');
+            $todo->text = $request->input('text');
+            $todo->body = $request->input('body');
+            $todo->due = $request->input('due');
 
-				$todo->save();
+            $todo->save();
 
-				return redirect('/')->with('success', 'Todo Updated');
+            return redirect('/')->with('success', 'Todo Updated');
     }
 
     /**
